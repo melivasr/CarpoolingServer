@@ -7,29 +7,29 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/modelo")
 public class Controller {
 
-    Modelo modelo;
+    ManejoDatos datosUsuario;
 
     @GetMapping("{usuario}")
-    public Modelo obtenerDatos(String usuario){
+    public ManejoDatos obtenerDatos(String usuario){
 
-        return modelo;
+        return datosUsuario;
         }
 
     @PostMapping
-    public String obtenerClientes(@RequestBody Modelo modelo){
-    this.modelo = modelo;
+    public String crearUsuario(@RequestBody  ManejoDatos datosUsuario){
+    this.datosUsuario = datosUsuario;
     return "Se ha obtenido el cliente";
     }
 
     @PutMapping
-    public String actualizarClientes(@RequestBody Modelo modelo){
-        this.modelo = modelo;
+    public String actualizarUsuario(@RequestBody  ManejoDatos datosUsuario){
+        this.datosUsuario = datosUsuario;
         return "Se ha actualizado correctamente";
     }
 
     @DeleteMapping("{usuario}")
-    public String eliminarClientes(String usuario){
-        this.modelo = null;
+    public String eliminarUsuario(String datosUsuario){
+        this.datosUsuario = null;
         return "Se ha eliminado correctamente";
     }
 }

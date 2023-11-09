@@ -1,14 +1,14 @@
 package server;
 
-public class Modelo {
+public class ManejoDatos{
 
     private String usuario;
     private String distancia;
     private String tipo;
 
-    public Modelo() {
+    public ManejoDatos() {
     }
-    public Modelo(String usuario, String distancia, String tipo) {
+    public ManejoDatos(String usuario, String distancia, String tipo) {
         this.usuario = usuario;
         this.distancia = distancia;
         this.tipo = tipo;

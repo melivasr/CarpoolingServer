@@ -27,18 +27,19 @@ class SpringServerApplicationTests {
 
 	@Test
 	void addUsuarioTest() {
-		addUsuario("Bruce Wayne", "bruce@gmail.com", "Empleado","Ubicacion1","jbjbj");
-		addUsuario("Harvey Dent", "dent@gmail.com", "Conductor","Ubicacion2","hbh");
-		addUsuario("Rachel", "rachel@gmail.com", "Empleado","Ubicacion3","njnj");
+		addUsuario("Bruce Wayne", "bruce@gmail.com", "Empleado","Ubicacion1","jbjbj", "5");
+		addUsuario("Harvey Dent", "dent@gmail.com", "Conductor","Ubicacion2","hbh", "5");
+		addUsuario("Rachel", "rachel@gmail.com", "Empleado","Ubicacion3","njnj", "5");
 	}
 
-	private void addUsuario(String name, String correo, String tipo, String ubicacion, String password) {
+	private void addUsuario(String name, String correo, String tipo, String ubicacion, String password, String calificacion) {
 		Usuario usuario = new Usuario();
 		usuario.setName(name);
 		usuario.setCorreo(correo);
 		usuario.setTipo(tipo);
 		usuario.setUbicacion(ubicacion);
 		usuario.setPassword(password);
+		usuario.setCalificacion(calificacion);
 		usuarioDao.save(usuario);
 	}
 

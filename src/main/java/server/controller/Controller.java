@@ -21,7 +21,7 @@ public class Controller {
         return usuarioDao.save(usuario);
     }
 
-    @GetMapping("/usuario/login") //http://localhost:8080//
+    @GetMapping("/usuario/login")
     public Usuario getUsuario(@RequestParam String correo, @RequestParam String password) {
         return usuarioDao.getUsuario(correo, password);
     }

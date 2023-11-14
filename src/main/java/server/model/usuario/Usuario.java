@@ -17,6 +17,7 @@ public class Usuario {
 
     private String ubicacion;
     private String password;
+    private String calificacion;
 
     public Usuario() {
     }
@@ -69,6 +70,14 @@ public class Usuario {
         this.password = password;
     }
 
+    public String getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(String calificacion) {
+        this.calificacion = calificacion;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -77,6 +86,7 @@ public class Usuario {
                 ", correo='" + correo + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", password='" + password + '\'' +
+                ", calificacion='" + calificacion + '\''+
                 '}';
     }
 }

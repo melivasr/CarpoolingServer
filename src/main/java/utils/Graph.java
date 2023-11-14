@@ -22,12 +22,13 @@ public class Graph {
         }
     }
 
-    public Map<Integer, Integer> DijkstraSP(int start, int end) {
+    public Map<String, Map<Integer, Integer>> DijkstraSP(int start, int end) {
 
         if(!graph.containsKey(start) || !graph.containsKey(end)) { throw new IllegalArgumentException(); }
 
         Map<Integer, Integer> distance = new HashMap<>();
-        Set<Integer> visitedVertexes = new HashSet<>();
+        Map<Integer, Integer> previous = new HashMap<>();
+        Set<Integer> visited = new HashSet<>();
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(distance::get));
 
         for(int vertex : graph.keySet()) {
@@ -46,9 +47,9 @@ public class Graph {
 
             if(currentVertex == end) { break; }
 
-            if(!visitedVertexes.contains(currentVertex)) {
+            if(!visited.contains(currentVertex)) {
 
-                visitedVertexes.add(currentVertex);
+                visited.add(currentVertex);
 
                 for(Edge edge : graph.get(currentVertex)) {
 
@@ -58,6 +59,8 @@ public class Graph {
                     if(weightSum < distance.get(neighbor)) {
 
                         distance.put(neighbor, weightSum);
+                        previous.put(neighbor, currentVertex);
+                        priorityQueue.remove(neighbor);
                         priorityQueue.offer(neighbor);
 
                     }
@@ -65,7 +68,40 @@ public class Graph {
             }
         }
 
-        return distance;
+        Map<String, Map<Integer, Integer>> result = new HashMap<>();
+        result.put("previous", previous);
+        result.put("distance", distance);
+        return result;
+
+    }
+
+    public List<Integer> getShortestPath(int start, int end, Map<Integer, Integer> previous) {
+
+        List<Integer> path = new ArrayList<>();
+        int currentVertex = end;
+
+        while(previous.containsKey(currentVertex) && currentVertex != start) {
+
+            path.add(currentVertex);
+            currentVertex = previous.get(currentVertex);
+
+        }
+
+        if(currentVertex == start) {
+
+            path.add(currentVertex);
+            Collections.reverse(path);
+
+        }
+
+        else {
+
+            System.out.println("No existen rutas");
+            path.clear();
+
+        }
+
+        return path;
 
     }
 

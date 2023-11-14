@@ -15,6 +15,8 @@ public class Usuario {
     private String correo;
     private String tipo;
 
+    private String password;
+
     public int getId() {
         return id;
     }
@@ -47,6 +49,14 @@ public class Usuario {
         this.tipo = tipo;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -54,6 +64,7 @@ public class Usuario {
                 ", name='" + name + '\'' +
                 ", correo='" + correo + '\'' +
                 ", tipo='" + tipo + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

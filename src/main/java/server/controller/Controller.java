@@ -1,10 +1,7 @@
 package server.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import server.model.usuario.Usuario;
 import server.model.usuario.UsuarioDao;
 
@@ -22,6 +19,11 @@ public class Controller {
     @PostMapping("/usuario/save")
     public Usuario save(@RequestBody Usuario usuario) {
         return usuarioDao.save(usuario);
+    }
+
+    @GetMapping("/usuario/login") //http://localhost:8080//
+    public Usuario getUsuario(@RequestParam String correo, @RequestParam String password) {
+        return usuarioDao.getUsuario(correo, password);
     }
 
 }

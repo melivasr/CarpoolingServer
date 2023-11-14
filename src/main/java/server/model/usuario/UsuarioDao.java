@@ -21,6 +21,10 @@ public class UsuarioDao {
         return usuarios;
     }
 
+    public Usuario getUsuario(String correo, String password) {
+        return repository.findByCorreoAndPassword(correo, password);
+    }
+
     public void delete(int usuarioId) {
         repository.deleteById(usuarioId);
     }

@@ -28,6 +28,24 @@ public class Server {
 
         map.printGraph();                                                              //imprime mapa, borrar mas tarde
 
+        
+        //valores temporales
+        int start = 20;                                                                //obtiene vertice inicial
+        int end = 21;                                                                  //obtiene vertice final
+
+        Map<String, Map<Integer, Integer>> dijkstraSP = map.DijkstraSP(start, end);
+        Map<Integer, Integer> previous = dijkstraSP.get("previous");
+        Map<Integer, Integer> distances = dijkstraSP.get("distance");
+
+        List<Integer> shortestPath = map.getShortestPath(start, end, previous);        //vertices de la ruta mas corta
+        System.out.println("El camino mas corto es: " + shortestPath);
+
+        int ETA = distances.get(end);                                                  //tiempo de llegada
+
+        if(ETA >= 999999) { System.out.println("No existen rutas"); }                  //caso sin rutas disponibles
+
+        else { System.out.println("ETA: " + ETA + "s"); }
+        
     }
 }
 
@@ -35,11 +53,10 @@ public class Server {
 
 /*
 
-        codigo para la ruta mas corta:
+        Check si hay gente en el camino:
 
-        int start = x;                                                                 //obtiene vertice inicial
-        int end = y;                                                                   //obtiene vertice final
-        Map<Integer, Integer> shortestPath = map.DijkstraSP(start, end);               //
-        int result = shortestPath.get(end);                                            //menor distancia posible
-
+        if(shortestPath.contains(x)) {
+            System.out.println("ok");
+        }
+        
 */

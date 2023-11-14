@@ -15,7 +15,11 @@ public class Usuario {
     private String correo;
     private String tipo;
 
+    private String ubicacion;
     private String password;
+
+    public Usuario() {
+    }
 
     public int getId() {
         return id;
@@ -47,6 +51,14 @@ public class Usuario {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
     public String getPassword() {

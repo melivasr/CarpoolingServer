@@ -86,6 +86,7 @@ public class Usuario {
                 ", correo='" + correo + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", password='" + password + '\'' +
+                ", ubicacion='" + ubicacion + '\''+
                 ", calificacion='" + calificacion + '\''+
                 '}';
     }

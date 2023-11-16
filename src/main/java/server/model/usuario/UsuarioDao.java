@@ -28,4 +28,9 @@ public class UsuarioDao {
     public void delete(int usuarioId) {
         repository.deleteById(usuarioId);
     }
+
+    public List<Object[]> getUsuariosRegistrados() {
+        return repository.findByOrderById();
+    }
+
 }

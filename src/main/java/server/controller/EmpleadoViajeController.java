@@ -6,7 +6,10 @@ import server.model.empleadoViaje.EmpleadoViaje;
 import server.model.empleadoViaje.EmpleadoViajeDao;
 
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 public class EmpleadoViajeController {
 
@@ -29,7 +32,9 @@ public class EmpleadoViajeController {
     }
 
     @GetMapping("/viaje/get-empleados")
-    public List<Object[]> getEmpleados() {
-        return empleadoViajeDao.getEmpleadoViajes();
+    public List<String> getRegistrados() {
+        return empleadoViajeDao.getEmpleadoViajes().stream()
+                .map(array -> String.join(",", Arrays.stream(array).map(String::valueOf).collect(Collectors.toList())))
+                .collect(Collectors.toList());
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface EmpleadoViajeRepository extends JpaRepository<EmpleadoViaje, Integer> {
-    @Query("SELECT e.correo, e.ubicacion FROM EmpleadoViaje e ORDER BY e.id DESC")
+    @Query("SELECT e.ubicacion FROM EmpleadoViaje e ORDER BY e.id DESC")
     List<Object[]> findByOrderByIdDesc();
 }
 

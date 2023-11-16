@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 
 @SpringBootApplication
-@EntityScan({"server.model.usuario", "server.model.empleadoViaje", "server.model.geographicData"})
+@EntityScan({"server.model.usuario", "server.model.empleadoViaje", "server.model.geographicData", "server.model.distanceData"})
 public class ServerApplication {
 
 	public static void main(String[] args) {

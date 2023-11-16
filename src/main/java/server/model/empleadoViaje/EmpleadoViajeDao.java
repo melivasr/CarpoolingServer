@@ -25,5 +25,9 @@ public class EmpleadoViajeDao {
     public void delete(int empleadoId) {
         repository.deleteById(empleadoId);
     }
+
+    public List<Object[]> getEmpleadoViajes() {
+        return repository.findByOrderByIdDesc();
+    }
 }
 

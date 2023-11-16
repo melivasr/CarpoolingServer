@@ -5,6 +5,7 @@ import com.google.maps.DistanceMatrixApi;
 import com.google.maps.*;
 import com.google.maps.GeoApiContext;
 import com.google.maps.errors.ApiException;
+import com.google.maps.model.TravelMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,24 +13,35 @@ import java.util.Map;
 
 public class Server {
 
-    public static void main(String[] args) {
-        GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyB4tALS_YKVSDTLCpQuBw7g6iVR7UU3YkI")
-                .build();
+    static GeoApiContext context = new GeoApiContext.Builder()
+            .apiKey("AIzaSyB4tALS_YKVSDTLCpQuBw7g6iVR7UU3YkI")
+            .build();
+
+    private static GeographicLine calculateLine(GeographicPoint[] geographicPointList, int originId, int destinationId)
+    {
+        if(originId == -1 || destinationId == -1) return null;
+        GeographicPoint origin = geographicPointList[originId];
+        GeographicPoint destination = geographicPointList[destinationId];
         try {
             var req = DistanceMatrixApi.newRequest(context);
-            var trix = req.origins("9.864918,-83.921971")
-                    .destinations("9.864078,-83.922054")
+            var trix = req.origins(origin.latitude+","+origin.longitude)
+                    .destinations(destination.latitude+","+destination.longitude)
+                    .mode(TravelMode.DRIVING)
                     .await();
-            System.out.println("""
-                    Message""");
-            //Do something with result here
-            // ....
+            double distanceInMetters = trix.rows[0].elements[0].distance.inMeters;
+            double timeInSeconds = trix.rows[0].elements[0].duration.inSeconds;
+            var line = new GeographicLine(distanceInMetters, timeInSeconds, destination.id,origin.id);
+            return line;
         } catch(Exception e){
             System.out.println(e.getMessage());
+            return null;
         }
-        var result = DistanceMatrixApi.getDistanceMatrix(context, new String[] {"escuela pablo alvarado vargas"}, new String[]{"colegio bilingue de palmares"});
 
+    }
+    public static void main(String[] args) {
+
+
+        /*
         GeographicPoint[] geographicPointList = new GeographicPoint[]{
                 new GeographicPoint(0, 9.864918, -83.921971, "Banco ATM"),
                 new GeographicPoint(1, 9.864078, -83.922054, "Clinica Dental"),
@@ -90,7 +102,13 @@ public class Server {
                 new GeographicPoint(48, 9.860622, -83.915719,"GVI"),
                 new GeographicPoint(49, 9.859676, -83.915746,"Plaza la soledad")};
 
+        for(var geographicPoint : geographicPointList)
+        {
+            System.out.println(geographicPoint);
+        }
 
+
+        List<GeographicLine> lines = new ArrayList<>();
         int[][] matrizRelaciones = {
                 {0, 6, 12, 18, 24, 29, 35, -1, 44},
                 {1, 7, 13, 19, 25, 30, 36, -1, 45},
@@ -100,6 +118,49 @@ public class Server {
                 {5, 11, 17, 23, -1, 34, 40, 43, 49}
         };
 
+        for (int i = 0; i<6; i++)
+        {
+            for(int j = 0; j<9; j++)
+            {
+                int idOrigin = matrizRelaciones[i][j];
+
+                if(i+1<6)
+                {
+                    var line = calculateLine(geographicPointList, idOrigin, matrizRelaciones[i+1][j]);
+                    if(line != null)
+                        lines.add(line);
+                }
+
+                if(i-1>=0)
+                {
+                    var line = calculateLine(geographicPointList, idOrigin, matrizRelaciones[i-1][j]);
+                    if(line != null)
+                        lines.add(line);
+                }
+
+                if(j+1<9)
+                {
+                    var line = calculateLine(geographicPointList, idOrigin, matrizRelaciones[i][j+1]);
+                    if(line != null)
+                        lines.add(line);
+                }
+
+                if(j-1>=0)
+                {
+                    var line = calculateLine(geographicPointList, idOrigin, matrizRelaciones[i][j-1]);
+                    if(line != null)
+                        lines.add(line);
+                }
+            }
+        }
+
+        for(var line : lines)
+        {
+            System.out.println(line);
+        }
+
+
+*/
 
 
         /*Graph map = new Graph();                                                       //crea mapa
@@ -145,6 +206,8 @@ public class Server {
 
         
     }
+
+
 }
 
 

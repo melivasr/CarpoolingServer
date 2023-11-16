@@ -1,38 +1,48 @@
 package server.model.geographicData;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import server.model.distanceData.GeographicDistanceData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class GeographicData {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String nodoInicio;
+    private String name;
 
-    private String coordenadasInicio;
+    private double latitude;
 
-    private String nodoFinal;
-    private String coordenadasFinal;
-    private String distancia;
 
-    private String tiempo;
+    @OneToMany(mappedBy = "origin", cascade = CascadeType.ALL)
+    private List<GeographicDistanceData> to_destination_lines;
+
+    @OneToMany(mappedBy = "destination", cascade = CascadeType.ALL)
+    private List<GeographicDistanceData> from_origin_lines;
+
+    public List<GeographicDistanceData> getTo_destination_lines() {
+        return to_destination_lines;
+    }
+
+    public void setTo_destination_lines(List<GeographicDistanceData> to_destination_lines) {
+        this.to_destination_lines = to_destination_lines;
+    }
+
+    public List<GeographicDistanceData> getFrom_origin_lines() {
+        return from_origin_lines;
+    }
+
+    public void setFrom_origin_lines(List<GeographicDistanceData> from_origin_lines) {
+        this.from_origin_lines = from_origin_lines;
+    }
+
+    private double longitude;
 
     public GeographicData() {
     }
-
-    public String getNodoFinal() {
-        return nodoFinal;
-    }
-
-    public void setNodoFinal(String nodoFinal) {
-        this.nodoFinal = nodoFinal;
-    }
-
     public int getId() {
         return id;
     }
@@ -41,57 +51,27 @@ public class GeographicData {
         this.id = id;
     }
 
-    public String getNodoInicio() {
-        return nodoInicio;
+    public String getName() {
+        return name;
     }
 
-    public void setNodoInicio(String nodoInicio) {
-        this.nodoInicio = nodoInicio;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCoordenadasInicio() {
-        return coordenadasInicio;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setCoordenadasInicio(String coordenadasInicio) {
-        this.coordenadasInicio = coordenadasInicio;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
-    public String getCoordenadasFinal() {
-        return coordenadasFinal;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setCoordenadasFinal(String coordenadasFinal) {
-        this.coordenadasFinal = coordenadasFinal;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
-
-    public String getDistancia() {
-        return distancia;
-    }
-
-    public void setDistancia(String distancia) {
-        this.distancia = distancia;
-    }
-
-    public String getTiempo() {
-        return tiempo;
-    }
-
-    public void setTiempo(String tiempo) {
-        this.tiempo = tiempo;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + nodoInicio + '\'' +
-                ", correo='" + coordenadasInicio + '\'' +
-                ", tipo='" + nodoFinal + '\'' +
-                ", password='" + coordenadasFinal + '\'' +
-                ", ubicacion='" + distancia + '\''+
-                ", calificacion='" + tiempo + '\''+
-                '}';
-    }
-
 }

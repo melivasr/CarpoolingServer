@@ -27,4 +27,9 @@ public class EmpleadoViajeController {
     public EmpleadoViaje getViaje(@RequestParam int correo) {
         return empleadoViajeDao.getViaje(correo);
     }
+
+    @GetMapping("/viaje/get-empleados")
+    public List<Object[]> getEmpleados() {
+        return empleadoViajeDao.getEmpleadoViajes();
+    }
 }

@@ -25,7 +25,7 @@ public class GeographicDataController {
     @GetMapping("/viaje/get-best-path")//
     public TravelData getRegistrados(@RequestBody TravelRequestData myObject) {
 
-        var usuario = usuarioDao.getUsuarioById(myObject.getIdUser());
+        var usuario = usuarioDao.getUsuarioByCorreo(myObject.getCorreoUser());
         var initialUbication = usuario.getUbication();
         var finalUbication = geographicDao.getUbicadionDataById(33);
 

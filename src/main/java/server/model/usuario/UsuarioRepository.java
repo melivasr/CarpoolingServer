@@ -32,6 +32,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query("SELECT u FROM Usuario u WHERE u.id = ?1")
     Usuario findById(int id);
 
+
+    @Query("SELECT u FROM Usuario u WHERE u.correo = ?1")
+    Usuario findByCorreo(String correo);
     /**
      * Metodo que obtiene una lista de usuarios ordenada por identificador
      * @return lista de usuarios

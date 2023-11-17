@@ -13,6 +13,8 @@ import java.util.List;
 
 public class TravelRequestData {
     private int idUser;
+
+    private String correoUser;
     private List<Integer> usersToPickUp;
 
     public TravelRequestData() {
@@ -20,6 +22,9 @@ public class TravelRequestData {
 
     public int getIdUser() {
         return idUser;
+    }
+    public String getCorreoUser(){
+        return correoUser;
     }
 
     public void setIdUser(int idUsuario) {

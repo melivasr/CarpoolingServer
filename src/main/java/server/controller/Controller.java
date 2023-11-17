@@ -26,6 +26,13 @@ public class Controller {
         return usuarioDao.getAllUsuarios();
     }
 
+
+    @GetMapping("/usuario/correo")
+    public int getUser(@RequestParam String correo) {
+        Usuario usuario = usuarioDao.getUsuarioByCorreo(correo);
+        return usuario.getId();
+    }
+
     /**
      * Guarda informacion sobre un usuario
      * @param usuario entidad que representa el usuario

@@ -52,6 +52,10 @@ public class UsuarioDao {
         return repository.findById(id);
     }
 
+    public Usuario getUsuarioByCorreo (String correo) {
+        return repository.findByCorreo(correo);
+    }
+
     /**
      * Metodo que elimina el identificador de un usuario
      * @param usuarioId identificador de un usuario

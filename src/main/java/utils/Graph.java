@@ -2,14 +2,30 @@ package utils;
 
 import java.util.*;
 
+/**
+ * Clase que maneja el grafo representante del mapa
+ */
 public class Graph {
 
     private Map<Integer, List<Edge>> graph;
 
+    /**
+     * Constructor del grafo
+     */
     public Graph() { graph = new HashMap<>(); }
 
+    /**
+     * Metodo para agregarle vertices al grafo
+     * @param vertex vertice
+     */
     public void addVertex(int vertex) { graph.put(vertex, new ArrayList<>()); }
 
+    /**
+     * Metodo para agregar aristas
+     * @param source origen de la arista
+     * @param destination destino de la arista
+     * @param weight peso de la arista
+     */
     public void addEdge(int source, int destination, int weight) {
 
         if(!graph.containsKey(source) || !graph.containsKey(destination)) { throw new IllegalArgumentException(); }
@@ -22,6 +38,13 @@ public class Graph {
         }
     }
 
+    /**
+     * Metodo para encontrar la ruta mas corta con el algoritmo de Dijkstra
+     * @param start vertice inicial
+     * @param end vertice final
+     * @return HashMap con informacion sobre vertices anteriores y tiempos minimos desde el vertice inicial
+     * @throws IllegalArgumentException el vertice no existe en el grafo
+     */
     public Map<String, Map<Integer, Integer>> DijkstraSP(int start, int end) {
 
         if(!graph.containsKey(start) || !graph.containsKey(end)) { throw new IllegalArgumentException(); }
@@ -75,6 +98,13 @@ public class Graph {
 
     }
 
+    /**
+     * Metodo que obtiene una lista con los vertices del camino mas corto
+     * @param start vertice inicial
+     * @param end vertice final
+     * @param previous mapa de vertices anteriores
+     * @return vertices atravesados en el camino
+     */
     public List<Integer> getShortestPath(int start, int end, Map<Integer, Integer> previous) {
 
         List<Integer> path = new ArrayList<>();

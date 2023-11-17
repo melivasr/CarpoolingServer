@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
  * Clase que inicia la aplicacion
  */
 @SpringBootApplication
-@EntityScan({"server.model.usuario", "server.model.empleadoViaje", "server.model.geographicData", "server.model.distanceData", "server.model.ruta"})
+@EntityScan({"server.model.usuario", "server.model.empleadoViaje", "server.model.geographicData", "server.model.distanceData", "server.model.ruta", "server.model.amigoViaje"})
 public class ServerApplication {
 
 	/**

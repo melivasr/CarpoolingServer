@@ -9,11 +9,20 @@ import server.model.ruta.RutaData;
 
 import java.util.List;
 
+/**
+ * Clase que maneja solicitudes HTTP relacionadas a rutas
+ */
 @RestController
 public class RutaController {
 
     @Autowired
     private RutaDao rutaDao;
+
+    /**
+     * Metodo para guardar informacion sobre rutas
+     * @param rutaData informacion de la ruta a ser guardada
+     * @return rutaData guardada
+     */
     @PostMapping("/ruta/save")
     public RutaData save(@RequestBody RutaData rutaData) {
         return rutaDao.save(rutaData);

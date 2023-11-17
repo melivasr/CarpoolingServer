@@ -1,7 +1,14 @@
 package utils;
 
+/**
+ * Clase para el algortimo de ordenamiento por insercion
+ */
 public class InsertionSort {
 
+    /**
+     * Metodo para ordenar un arreglo de numeros
+     * @param array arreglo con numeros
+     */
     public static void sort(int[] array) {
 
         for(int i = 1; i < array.length; i++) {

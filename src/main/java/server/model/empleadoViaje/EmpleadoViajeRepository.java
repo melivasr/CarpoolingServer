@@ -11,6 +11,11 @@ import java.util.List;
  */
 @Repository
 public interface EmpleadoViajeRepository extends JpaRepository<EmpleadoViaje, Integer> {
+
+    /**
+     * Metodo que obtiene los empleados en viajes
+     * @return lista de empleados en viajes ordenada por identificador
+     */
     @Query("SELECT e.ubicacion FROM EmpleadoViaje e ORDER BY e.id DESC")
     List<Object[]> findByOrderByIdDesc();
 }

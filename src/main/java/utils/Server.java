@@ -11,12 +11,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Clase que maneja el servidor
+ */
 public class Server {
 
     static GeoApiContext context = new GeoApiContext.Builder()
             .apiKey("AIzaSyB4tALS_YKVSDTLCpQuBw7g6iVR7UU3YkI")
             .build();
 
+    /**
+     * Metodo que calcula las lineas del mapa
+     * @param geographicPointList lista con los puntos del mapa
+     * @param originId identificador del punto origen
+     * @param destinationId identificador del punto final
+     * @return lineas geograficas
+     */
     private static GeographicLine calculateLine(GeographicPoint[] geographicPointList, int originId, int destinationId)
     {
         if(originId == -1 || destinationId == -1) return null;
@@ -38,6 +48,11 @@ public class Server {
         }
 
     }
+
+    /**
+     * Metodo principal de la clase
+     * @param args argumento de linea de comando
+     */
     public static void main(String[] args) {
 
 

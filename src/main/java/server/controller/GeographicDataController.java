@@ -13,6 +13,9 @@ import server.model.usuario.UsuarioDao;
 
 import java.util.*;
 
+/**
+ * Clase que maneja datos geograficos
+ */
 @RestController
 public class GeographicDataController {
 
@@ -22,6 +25,11 @@ public class GeographicDataController {
     @Autowired
     private UsuarioDao usuarioDao;
 
+    /**
+     * Metodo que obtiene la mejor ruta de viaje entre dos puntos
+     * @param myObject objeto con la información del usuario y destino.
+     * @return datos de viaje con la mejor ruta
+     */
     @GetMapping("/viaje/get-best-path")//
     public TravelData getRegistrados(@RequestBody TravelRequestData myObject) {
 
@@ -36,6 +44,12 @@ public class GeographicDataController {
         return outputData;
     }
 
+    /**
+     * Metodo para obtener el mejor camino de un viaje
+     * @param source punto inicial
+     * @param destination punto final
+     * @param outputData mejor camino
+     */
     private void GetBestPath(GeographicData source, GeographicData destination, TravelData outputData)
     {
         Queue<GeographicData> queue = new LinkedList<>();

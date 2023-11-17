@@ -24,10 +24,19 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     Usuario findByCorreoAndPassword(String correo, String password);
 
     /**
+     * Metodo que obtiene un usuario por su correo y contrasena
+     * @param correo correo asociado al usuario
+     * @param password contrasena asociada al usuario
+     * @return usuario cuyo correo y contrasena coincide
+     */
+    @Query("SELECT u FROM Usuario u WHERE u.id = ?1")
+    Usuario findById(int id);
+
+    /**
      * Metodo que obtiene una lista de usuarios ordenada por identificador
      * @return lista de usuarios
      */
-    @Query("SELECT e.name, e.correo FROM Usuario e ORDER BY e.id DESC")
+    @Query("SELECT e.name, e.correo, e.calificacion FROM Usuario e ORDER BY e.id DESC")
     List<Object[]> findByOrderById();
 
 }

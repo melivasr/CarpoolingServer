@@ -37,7 +37,7 @@ class SpringServerApplicationTests {
 		usuario.setName(name);
 		usuario.setCorreo(correo);
 		usuario.setTipo(tipo);
-		usuario.setUbicacion(ubicacion);
+		//usuario.setUbicacion(ubicacion);
 		usuario.setPassword(password);
 		usuario.setCalificacion(calificacion);
 		usuarioDao.save(usuario);

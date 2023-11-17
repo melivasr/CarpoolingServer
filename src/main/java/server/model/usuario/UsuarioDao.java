@@ -44,6 +44,15 @@ public class UsuarioDao {
     }
 
     /**
+     * Metodo que obtiene un usuario por su correo y password
+     * @param id correo del usuario
+     * @return usuario cuyo correo y password coincide
+     */
+    public Usuario getUsuarioById(int id) {
+        return repository.findById(id);
+    }
+
+    /**
      * Metodo que elimina el identificador de un usuario
      * @param usuarioId identificador de un usuario
      */

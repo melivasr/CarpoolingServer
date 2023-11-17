@@ -1,7 +1,10 @@
 package server.model.geographicData;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import server.model.distanceData.GeographicDistanceData;
+import server.model.usuario.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +23,18 @@ public class GeographicData {
     private double latitude;
 
 
+    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "origin", cascade = CascadeType.ALL)
     private List<GeographicDistanceData> to_destination_lines;
 
+    @JsonManagedReference
+    @JsonIgnore
+    @OneToMany(mappedBy = "ubication", cascade = CascadeType.ALL)
+    private List<Usuario> usuarios;
+
+    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "destination", cascade = CascadeType.ALL)
     private List<GeographicDistanceData> from_origin_lines;
 
@@ -48,6 +60,7 @@ public class GeographicData {
      * Constructor generico
      */
     public GeographicData() {
+
     }
 
     /**

@@ -35,7 +35,7 @@ public class GeographicDao {
      * @param coordenadasInicio coordenadas inciales
      * @return datos geograficos de las coordenadas inciales
      */
-    public GeographicData getCoordenadasInicio(int coordenadasInicio) {
+    public GeographicData getUbicadionDataById(int coordenadasInicio) {
         return repository.findById(coordenadasInicio).orElse(null);
     }
 

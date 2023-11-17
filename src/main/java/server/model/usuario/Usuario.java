@@ -1,9 +1,8 @@
 package server.model.usuario;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+import server.model.geographicData.GeographicData;
 
 /**
  * Clase que representa al usuario
@@ -18,7 +17,10 @@ public class Usuario {
     private String correo;
     private String tipo;
 
-    private String ubicacion;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "ubicacionId", referencedColumnName = "id")
+    private GeographicData ubication;
     private String password;
     private String calificacion;
 
@@ -93,22 +95,6 @@ public class Usuario {
     }
 
     /**
-     * Metodo que obtiene la ubicacion del usuario
-     * @return ubicacion asociada
-     */
-    public String getUbicacion() {
-        return ubicacion;
-    }
-
-    /**
-     * Metodo para establecer la ubicacion del usuario
-     * @param ubicacion ubicacion del usuario
-     */
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
-    /**
      * Metodo que obtiene la contrasena del usuario
      * @return contrasena asociada
      */
@@ -132,6 +118,14 @@ public class Usuario {
         return calificacion;
     }
 
+    public GeographicData getUbication() {
+        return ubication;
+    }
+
+    public void setUbication(GeographicData ubication) {
+        this.ubication = ubication;
+    }
+
     /**
      * Metodo para establecer la calificacion del usuario
      * @param calificacion calificacion del usuario
@@ -152,7 +146,7 @@ public class Usuario {
                 ", correo='" + correo + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", password='" + password + '\'' +
-                ", ubicacion='" + ubicacion + '\''+
+                ", ubicacion='" + ubication + '\''+
                 ", calificacion='" + calificacion + '\''+
                 '}';
     }

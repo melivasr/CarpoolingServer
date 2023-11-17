@@ -1,5 +1,6 @@
 package server.model.distanceData;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import server.model.geographicData.GeographicData;
 import jakarta.persistence.*;
 
@@ -14,10 +15,12 @@ public class GeographicDistanceData {
 
     private int id;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "originId", referencedColumnName = "id")
     private GeographicData origin;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "destinationId", referencedColumnName = "id")
     private GeographicData destination;

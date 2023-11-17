@@ -17,22 +17,22 @@ public class AmigoViajeController {
     @Autowired
     private AmigoViajeDao amigoViajeDao;
 
-    @PostMapping("/viaje/save")
+    @PostMapping("/viaje/save-viajes")
     public AmigoViaje save(@RequestBody AmigoViaje amigoViaje) {
         return amigoViajeDao.save(amigoViaje);
     }
 
-    @GetMapping("/viaje/get-all")
+    @GetMapping("/viaje/get-all-viajes")
     public List<AmigoViaje> getAllViajes() {
         return amigoViajeDao.getAllViajes();
     }
 
-    @GetMapping("/viaje/get")
+    @GetMapping("/viaje/get-viaje")
     public AmigoViaje getViaje(@RequestParam int correo) {
         return amigoViajeDao.getViaje(correo);
     }
 
-    @GetMapping("/viaje/get-empleados")
+    @GetMapping("/viaje/get-amigos")
     public List<String> getRegistrados() {
         return amigoViajeDao.getAmigoViajes().stream()
                 .map(array -> String.join(",", Arrays.stream(array).map(String::valueOf).collect(Collectors.toList())))
